@@ -5,5 +5,25 @@ IMPORTANT: This library only works if the images you are resizing have a CORS he
 ##Usage
 ###With a source(recommended)
 ''' js
+imageObject = new Image()
+if(CanvasImageResizer.canResize())
+{
+	CanvasImageResizer.resizeImageFromSource("urlToImageHere Ex:http:/localhost/images/logo.png", callback)
+	function callback(dataUrl,source){
+		imageObject.src = dataUrl
+	}
+}
 '''
 
+###With an object(more expensive)
+''' js
+imageObject = new Image()
+imageObject.src = "urlToImageHere Ex:http:/localhost/images/logo.png"
+if(CanvasImageResizer.canResize())
+{
+	CanvasImageResizer.resizeImageFromObject(imageObject, callback)
+	function callback(dataUrl,object){
+		object.src = dataUrl
+	}
+}
+'''
