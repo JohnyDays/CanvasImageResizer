@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Canvasimageresizer : Resize images once on browsers that support canvas, from a source or an image object" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Canvasimageresizer</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/JohnyDays/CanvasImageResizer">View on GitHub</a>
+
+          <h1 id="project_title">Canvasimageresizer</h1>
+          <h2 id="project_tagline">Resize images once on browsers that support canvas, from a source or an image object</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/JohnyDays/CanvasImageResizer/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/JohnyDays/CanvasImageResizer/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h2>
+<a name="canvasimageresizer" class="anchor" href="#canvasimageresizer"><span class="octicon octicon-link"></span></a>CanvasImageResizer</h2>
+
+<h1></h1>
+
+<p>Resize images once on browsers that support canvas, from a source or an image object.</p>
+
+<p>IMPORTANT: This library only works if the images you are resizing have a CORS header or are in the same domain as your page.</p>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<h3>
+<a name="with-a-sourcerecommended" class="anchor" href="#with-a-sourcerecommended"><span class="octicon octicon-link"></span></a>With a source(recommended)</h3>
+
+<div class="highlight highlight-js"><pre><span class="nx">imageObject</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Image</span><span class="p">()</span>
+<span class="k">if</span><span class="p">(</span><span class="nx">CanvasImageResizer</span><span class="p">.</span><span class="nx">canResize</span><span class="p">())</span>
+<span class="p">{</span>
+    <span class="nx">CanvasImageResizer</span><span class="p">.</span><span class="nx">resizeImageFromSource</span><span class="p">(</span><span class="s2">"urlToImageHere Ex:http:/localhost/images/logo.png"</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span>
+    <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">dataUrl</span><span class="p">,</span><span class="nx">source</span><span class="p">){</span>
+        <span class="nx">imageObject</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">dataUrl</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<h3>
+<a name="with-an-objectmore-expensive" class="anchor" href="#with-an-objectmore-expensive"><span class="octicon octicon-link"></span></a>With an object(more expensive)</h3>
+
+<div class="highlight highlight-js"><pre><span class="nx">imageObject</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Image</span><span class="p">()</span>
+<span class="nx">imageObject</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s2">"urlToImageHere Ex:http:/localhost/images/logo.png"</span>
+<span class="k">if</span><span class="p">(</span><span class="nx">CanvasImageResizer</span><span class="p">.</span><span class="nx">canResize</span><span class="p">())</span>
+<span class="p">{</span>
+    <span class="nx">CanvasImageResizer</span><span class="p">.</span><span class="nx">resizeImageFromObject</span><span class="p">(</span><span class="nx">imageObject</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span>
+    <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">dataUrl</span><span class="p">,</span><span class="nx">object</span><span class="p">){</span>
+        <span class="nx">object</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">dataUrl</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<h3>
+<a name="with-an-object-after-a-non-resized-image-has-already-been-loaded-into-the-object" class="anchor" href="#with-an-object-after-a-non-resized-image-has-already-been-loaded-into-the-object"><span class="octicon octicon-link"></span></a>With an object after a (non-resized) image has already been loaded into the object</h3>
+
+<div class="highlight highlight-js"><pre><span class="nx">imageObject</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Image</span><span class="p">()</span>
+<span class="nx">imageObject</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s2">"urlToImageHere Ex:http:/localhost/images/logo.png"</span>
+<span class="nx">imageObject</span><span class="p">.</span><span class="nx">onload</span><span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">CanvasImageResizer</span><span class="p">.</span><span class="nx">canResize</span><span class="p">())</span>
+    <span class="p">{</span>
+        <span class="nx">CanvasImageResizer</span><span class="p">.</span><span class="nx">resizeImageFromObject</span><span class="p">(</span><span class="nx">imageObject</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span>
+        <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">dataUrl</span><span class="p">,</span><span class="nx">object</span><span class="p">){</span>
+            <span class="nx">object</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">dataUrl</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Canvasimageresizer maintained by <a href="https://github.com/JohnyDays">JohnyDays</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
