@@ -1,0 +1,9 @@
+## CanvasImageResizer
+==================
+Resize images once on browsers that support canvas, from a source or an image object.
+IMPORTANT: This library only works if the images you are resizing have a CORS header or are in the same domain as your page.
+##Usage
+###With a source(recommended)
+''' js
+'''
+
