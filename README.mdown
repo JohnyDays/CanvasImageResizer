@@ -4,7 +4,7 @@ Resize images once on browsers that support canvas, from a source or an image ob
 IMPORTANT: This library only works if the images you are resizing have a CORS header or are in the same domain as your page.
 ##Usage
 ###With a source(recommended)
-''' js
+``` js
 imageObject = new Image()
 if(CanvasImageResizer.canResize())
 {
@@ -13,10 +13,10 @@ if(CanvasImageResizer.canResize())
 		imageObject.src = dataUrl
 	}
 }
-'''
+```
 
 ###With an object(more expensive)
-''' js
+``` js
 imageObject = new Image()
 imageObject.src = "urlToImageHere Ex:http:/localhost/images/logo.png"
 if(CanvasImageResizer.canResize())
@@ -26,4 +26,4 @@ if(CanvasImageResizer.canResize())
 		object.src = dataUrl
 	}
 }
-'''
+```
