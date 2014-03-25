@@ -32,3 +32,18 @@ if(CanvasImageResizer.canResize())
 	}
 }
 ```
+###With an object after a (non-resized) image has already been loaded into the object
+
+``` js
+imageObject = new Image()
+imageObject.src = "urlToImageHere Ex:http:/localhost/images/logo.png"
+imageObject.onload= function(){
+	if(CanvasImageResizer.canResize())
+	{
+		CanvasImageResizer.resizeImageFromObject(imageObject, callback)
+		function callback(dataUrl,object){
+			object.src = dataUrl
+		}
+	}
+}
+```
